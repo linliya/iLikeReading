@@ -1,0 +1,27 @@
+<!--pages/detail/detail.wxml-->
+<view class='detail-header'>
+  <image src="{{detail.image}}" class='detail-header-img'></image>
+</view>
+<view class='detail-content'>
+  <view class='detail-info'>
+    <view>
+      <text class='title'>{{detail.title}}</text>
+      <text class='author'>作者: {{detail.author[0]}}</text>
+      <text class='publisher'>出版社: {{detail.publisher}}</text>
+      <text class='pubdate'>出版时间:{{detail.pubdate}}</text>
+      <text class='price'>定价: {{detail.price}}</text>  
+    </view>
+
+    <view class='detail-score'>
+      <text>{{detail.rating.average}}分</text>
+    </view>
+  </view>
+
+  <view class='detail-summary' wx:if="{{detail.summary}}"> 
+    <text wx:if="{{detail.summary}}">{{detail.summary}}</text>
+  </view>
+
+  <view class='author-summary' wx:if="{{detail.author_intro}}">
+    <text >{{detail.author_intro}}</text>
+  </view>
+</view>

@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<view class="search-container">
+  <input placeholder="输入书名/作者进行搜索" bindinput="getSearchKey"></input>
+  <icon type="search" size="20" bindtap="searchBooks"/>
+</view>
+
+<scroll-view class='scroll-container'>
+  <view class="books-count">共为您找到{{books.length}}本图书</view>
+
+  <view class="books-container">
+    <view wx:for="{{books}}" wx:key="{{item.id}}" class="book-item" bindtap='getDetail' data-id="{{item.id}}">
+      <image src="{{item.images.small}}"></image>
+      <view class="book-info">
+        <text class="book-title">{{item.title}}</text>
+        <text class="book-publisher">{{item.publisher}}</text>        
+        <text class="book-author">{{item.author[0]}}</text>
+      </view>
+    </view>
+  </view>
+</scroll-view>
