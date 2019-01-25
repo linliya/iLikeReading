@@ -7,30 +7,36 @@ Page({
     books: [],
     detail: {}
   },
+  /**
+   * 获取搜索关键字
+   */
   getSearchKey (e) {
     this.setData({ searchKey: e.detail.value})
   },
-  //事件处理函数
+  /**
+   * 搜索图书
+   */
   searchBooks () {
-    let that = this
     this.showLoading()
     wx.request({
       url: 'https://douban.smaug.top/v2/book/search',
       data: {
         q: this.data.searchKey,
-        count: 100
+        count: 50
       },
       header: {
         "Content-Type": "application-json"
       },
       success: (res) => {
-        that.setData({books: res.data.books})
+        this.setData({books: res.data.books})
         this.cancelLoading()
       }
     })
   },
+  /**
+   * 获取图书详情
+   */
   getDetail (e) {
-    let that = this
     this.showLoading()
     wx.request({
       url: 'https://douban.smaug.top/v2/book/' + e.currentTarget.dataset.id,
@@ -38,22 +44,31 @@ Page({
         "Content-Type": "json"
       },
       success: (res) => {
-        that.setData({ detail: res.data })
+        this.setData({ detail: res.data })
         wx.navigateTo({url: '../detail/detail'})
         this.cancelLoading()
       }
     })
   },
-  showLoading() {
-    wx.showToast({
+  /**
+   * 进入loading状态
+   */
+  showLoading () {
+    wx.showLoading({
       title: '加载中',
       icon: 'loading'
     })
   },
-  cancelLoading() {
-    wx.hideToast()
+  /**
+   * 退出loading状态
+   */
+  cancelLoading () {
+    wx.hideLoading()
   },
-  onLoad: function () {
+  /**
+   * 页面加载完成进行的操作
+   */
+  onLoad () {
     this.searchBooks()
-  },
+  }
 })

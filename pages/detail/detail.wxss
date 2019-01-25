@@ -19,6 +19,11 @@
   display: flex;
   justify-content: space-between;
 }
+.detail-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .detail-info .detail-score {
   min-width: 100rpx;

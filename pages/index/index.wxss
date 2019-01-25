@@ -12,7 +12,7 @@
 .search-container input {
   padding: 16rpx;
   background: #fff;
-  margin: 0 20rpx;
+  margin: 0rpx 20rpx;
   border-radius: 8rpx;
 }
 
@@ -25,10 +25,13 @@
 }
 
 .scroll-container {
-  margin-top: 120rpx;
-  padding: 20rpx;
+  margin-top: 100rpx;
+}
+.scorll-view-container {
+  margin: 0 20rpx;
 }
 .books-count {
+  margin: 30rpx 0;
   color: #388c86;
   font-size: 28rpx;
 }
