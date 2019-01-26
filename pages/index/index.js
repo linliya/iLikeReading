@@ -18,37 +18,42 @@ Page({
    */
   searchBooks () {
     this.showLoading()
-    wx.request({
-      url: 'https://douban.smaug.top/v2/book/search',
+
+    wx.cloud.init()
+    wx.cloud.callFunction({
+      name: 'request',
       data: {
+        url: 'https://api.douban.com/v2/book/search',
         q: this.data.searchKey,
         count: 50
       },
-      header: {
-        "Content-Type": "application-json"
-      },
-      success: (res) => {
-        this.setData({books: res.data.books})
-        this.cancelLoading()
-      }
     })
+      .then(res => {
+        this.setData({ books: res.result.books })
+        this.cancelLoading()
+      })
+      .catch(console.error)
   },
   /**
    * 获取图书详情
    */
   getDetail (e) {
     this.showLoading()
-    wx.request({
-      url: 'https://douban.smaug.top/v2/book/' + e.currentTarget.dataset.id,
-      header: {
-        "Content-Type": "json"
+
+    wx.cloud.init()
+    wx.cloud.callFunction({
+      name: 'request-detail',
+      data: {
+        url: 'https://api.douban.com/v2/book/' + e.currentTarget.dataset.id
       },
-      success: (res) => {
-        this.setData({ detail: res.data })
+    })
+      .then(res => {
+        console.log(res.result)
+        this.setData({ detail: res.result })
         wx.navigateTo({url: '../detail/detail'})
         this.cancelLoading()
-      }
-    })
+      })
+      .catch(console.error)
   },
   /**
    * 进入loading状态
