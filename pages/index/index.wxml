@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="search-container">
-  <input placeholder="输入书名/作者进行搜索" bindinput="getSearchKey"></input>
+  <input placeholder="输入书名/作者进行搜索" bindinput="getSearchKey" bindconfirm="searchBooks" confirm-type="search"></input>
   <icon type="search" size="20" bindtap="searchBooks"/>
 </view>
 
